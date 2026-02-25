@@ -1,0 +1,20 @@
+# Backend
+backend/.env
+backend/vendor
+backend/storage/*.key
+backend/node_modules
+
+# Frontend
+frontend/node_modules
+frontend/dist
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
