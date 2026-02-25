@@ -1,156 +1,201 @@
-# Plateforme de Bureau de Recrutement en Ligne
+<div align="center">
 
-## Description
-Plateforme web complète permettant de connecter les entreprises, les candidats et un administrateur pour gérer le processus de recrutement.
+# 🧑‍💼 Plateforme de Recrutement en Ligne
 
-## Stack Technique
+**Une solution complète de mise en relation entre entreprises et candidats**
 
-### Front-end
-- HTML5
-- CSS3
-- Tailwind CSS
-- JavaScript
-- React.js
+[![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
-### Back-end
-- PHP 8.1+
-- Laravel 10.x
-- MySQL
+</div>
 
-## Structure du Projet
+---
+
+## 📋 Table des matières
+
+- [À propos](#-à-propos)
+- [Fonctionnalités](#-fonctionnalités)
+- [Stack technique](#-stack-technique)
+- [Architecture](#-architecture)
+- [Installation](#-installation)
+- [Comptes de test](#-comptes-de-test)
+- [Endpoints API](#-endpoints-api)
+
+---
+
+## 🎯 À propos
+
+Plateforme web full-stack permettant de digitaliser le processus de recrutement. Elle met en relation **entreprises**, **candidats** et un **administrateur** au sein d'un espace unifié, sécurisé et intuitif.
+
+Le projet a été développé dans le cadre d'un **Projet de Fin d'Études (PFE)**.
+
+---
+
+## ✨ Fonctionnalités
+
+| Rôle | Fonctionnalités |
+|---|---|
+| 🔴 **Admin** | Gestion complète des utilisateurs (CRUD), tableau de bord statistiques global |
+| 🟡 **Entreprise** | Publication et gestion des offres d'emploi, consultation et traitement des candidatures |
+| 🟢 **Candidat** | Consultation des offres, candidature avec message, upload et gestion des CVs |
+
+**Fonctionnalités transversales :**
+- ✅ Authentification sécurisée avec tokens (Laravel Sanctum)
+- ✅ Inscription avec choix de rôle (Candidat / Entreprise)
+- ✅ Protection des routes par rôle
+- ✅ Upload de fichiers CV (PDF, DOC, DOCX — max 10 MB)
+- ✅ Tableau de bord personnalisé par rôle
+- ✅ Recherche et filtres avancés (localisation, type de contrat, statut)
+- ✅ Gestion des statuts de candidatures (En attente → Examinée → Acceptée / Refusée)
+
+---
+
+## 🛠 Stack technique
+
+### Backend
+- **PHP 8.2+** / **Laravel 10.x**
+- **Laravel Sanctum** — authentification par tokens API
+- **MySQL / MariaDB** — base de données relationnelle
+- Architecture **MVC** avec API REST
+
+### Frontend
+- **React 18** + **Vite 5**
+- **Tailwind CSS 3** — design utilitaire
+- **Axios** — client HTTP
+- **React Router v6** — navigation
+- **Context API** — gestion de l'état d'authentification
+
+---
+
+## 🏗 Architecture
 
 ```
-Jhilel/
-├── backend/          # Application Laravel
-├── frontend/         # Application React
-└── README.md
+Plateforme-de-Recrutement/
+├── backend/                  # API REST Laravel
+│   ├── app/
+│   │   ├── Http/Controllers/ # AuthController, UserController, JobOfferController...
+│   │   └── Models/           # User, JobOffer, Application, CvFile
+│   ├── database/
+│   │   ├── migrations/       # Schéma de la base de données
+│   │   └── seeders/          # Données de test
+│   └── routes/api.php        # Définition des routes API
+│
+└── frontend/                 # SPA React
+    └── src/
+        ├── pages/            # Login, Register, Dashboard, JobOffers...
+        ├── components/       # Composants réutilisables
+        └── contexts/         # AuthContext
 ```
 
-## Installation
+---
 
-### Backend (Laravel)
+## 🚀 Installation
+
+### Prérequis
+- PHP >= 8.2 + Composer
+- Node.js >= 18 + npm
+- MySQL ou MariaDB
+
+### 1. Cloner le dépôt
+```bash
+git clone https://github.com/Abdelkhabir6/Plateforme-de-Recrutement.git
+cd Plateforme-de-Recrutement
+```
+
+### 2. Backend — Laravel
+
 ```bash
 cd backend
 composer install
 ```
 
-**Configuration de l'environnement** : 
-- Si vous avez un fichier `.env.example`, copiez-le : `cp .env.example .env`
-- Sinon, consultez le fichier `backend/ENV_TEMPLATE.md` pour créer votre fichier `.env`
-
+Copier et configurer l'environnement :
 ```bash
+cp .env.example .env
 php artisan key:generate
 ```
 
-**Configuration de la base de données** : Éditez le fichier `.env` et configurez :
+Éditer `.env` avec vos paramètres de base de données :
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=recruitment_platform
 DB_USERNAME=root
-DB_PASSWORD=votre_mot_de_passe
+DB_PASSWORD=
 ```
 
+Créer la base de données et lancer les migrations :
 ```bash
-# Créer la base de données MySQL
-mysql -u root -p
-CREATE DATABASE recruitment_platform;
+# Créer la base de données
+mysql -u root -p -e "CREATE DATABASE recruitment_platform;"
 
-# Retour dans le terminal
+# Migrations + données de test
 php artisan migrate --seed
+
+# Lien de stockage
 php artisan storage:link
-mkdir -p storage/app/public/cv_files
+
+# Démarrer le serveur
 php artisan serve
 ```
 
-### Frontend (React)
+> L'API est accessible sur **http://localhost:8000**
+
+### 3. Frontend — React
+
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm run dev
 ```
 
-Le frontend sera accessible sur `http://localhost:3000` (ou le port configuré par Vite)
+> L'interface est accessible sur **http://localhost:5173** (ou le port indiqué par Vite)
 
-## Fonctionnalités
+---
 
-- ✅ Authentification sécurisée (Admin / Entreprise / Candidat)
-- ✅ Gestion des utilisateurs (CRUD)
-- ✅ Gestion des offres d'emploi (CRUD)
-- ✅ Gestion des candidatures
-- ✅ Upload et consultation des CV
-- ✅ Tableau de bord avec statistiques
+## 🔑 Comptes de test
 
-## Rôles
+Après exécution de `php artisan migrate --seed` :
 
-- **Admin** : Gestion complète de la plateforme (utilisateurs, offres, candidatures)
-- **Entreprise** : Publication d'offres, consultation des candidatures
-- **Candidat** : Consultation des offres, candidature, upload de CV
+| Rôle | Email | Mot de passe |
+|---|---|---|
+| 🔴 Administrateur | `admin@recruitment.com` | `password` |
+| 🟡 Entreprise | `entreprise1@recruitment.com` | `password` |
+| 🟡 Entreprise | `entreprise2@recruitment.com` | `password` |
+| 🟢 Candidat | `candidat1@recruitment.com` | `password` |
+| 🟢 Candidat | `candidat2@recruitment.com` | `password` |
 
-## Comptes de test
+---
 
-Après avoir exécuté les seeders :
+## 📡 Endpoints API
 
-- **Administrateur** : `admin@recruitment.com` / `password`
-- **Entreprise** : `entreprise1@recruitment.com` / `password`
-- **Candidat** : `candidat1@recruitment.com` / `password`
+### Publics
+| Méthode | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/register` | Inscription |
+| `POST` | `/api/login` | Connexion |
+| `GET` | `/api/job-offers` | Liste des offres d'emploi |
+| `GET` | `/api/job-offers/{id}` | Détail d'une offre |
 
-## Architecture
+### Protégés (nécessitent un token Sanctum)
+| Méthode | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/logout` | Déconnexion |
+| `GET` | `/api/me` | Profil utilisateur connecté |
+| `GET` | `/api/dashboard` | Statistiques du tableau de bord |
+| `CRUD` | `/api/users` | Gestion des utilisateurs (Admin) |
+| `CRUD` | `/api/applications` | Gestion des candidatures |
+| `CRUD` | `/api/cv-files` | Gestion des CVs |
+| `GET` | `/api/my-job-offers` | Offres de l'entreprise connectée |
 
-### Backend (Laravel)
-- **Authentification** : Laravel Sanctum (tokens API)
-- **Base de données** : MySQL avec migrations et seeders
-- **Architecture** : MVC (Modèles, Vues, Contrôleurs)
-- **Sécurité** : Validation, hash des mots de passe, protection CSRF
+---
 
-### Frontend (React)
-- **Framework** : React 18 avec React Router
-- **Styling** : Tailwind CSS
-- **HTTP Client** : Axios
-- **State Management** : Context API pour l'authentification
+<div align="center">
 
-## Fonctionnalités détaillées
+Développé avec ❤️ dans le cadre d'un PFE — 2024
 
-### Authentification
-- Inscription avec choix de rôle (Candidat/Entreprise)
-- Connexion sécurisée
-- Gestion des tokens d'authentification
-- Protection des routes par rôle
-
-### Gestion des utilisateurs (Admin)
-- Liste, création, modification, suppression
-- Filtres par rôle
-- Recherche par nom/email
-
-### Gestion des offres d'emploi
-- **Entreprises** : CRUD complet
-- **Candidats** : Consultation et recherche
-- Filtres : localisation, type de contrat, statut
-- Recherche dans titre et description
-
-### Gestion des candidatures
-- **Candidats** : Postuler avec CV et message
-- **Entreprises** : Voir, filtrer et changer le statut
-- Statuts : En attente, Examinée, Acceptée, Refusée
-
-### Gestion des CV
-- Upload de fichiers (PDF, DOC, DOCX) - max 10MB
-- Liste et suppression
-- Téléchargement pour les entreprises (lié aux candidatures)
-
-### Tableau de bord
-- **Admin** : Statistiques globales (utilisateurs, offres, candidatures)
-- **Entreprise** : Statistiques sur ses offres et candidatures
-- **Candidat** : Statistiques sur ses candidatures et CV
-
-## Documentation
-
-- **INSTALLATION.md** : Guide d'installation détaillé et liste complète des endpoints API
-- **ARCHITECTURE.md** : Documentation de l'architecture du projet, schémas de base de données et flux de données
-- **backend/ENV_TEMPLATE.md** : Template pour le fichier de configuration `.env`
-
-## Licence
-
-Ce projet a été développé pour un Projet de Fin d'Études (PFE).
-
+</div>
