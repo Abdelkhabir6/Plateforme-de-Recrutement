@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧑‍💼 Plateforme de Recrutement en Ligne
+# Plateforme de Recrutement en Ligne
 
 **Une solution complète de mise en relation entre entreprises et candidats**
 
@@ -14,63 +14,66 @@
 
 ---
 
-## 📋 Table des matières
+## Table des matieres
 
-- [À propos](#-à-propos)
-- [Fonctionnalités](#-fonctionnalités)
-- [Stack technique](#-stack-technique)
-- [Architecture](#-architecture)
-- [Installation](#-installation)
-- [Comptes de test](#-comptes-de-test)
-- [Endpoints API](#-endpoints-api)
-
----
-
-## 🎯 À propos
-
-Plateforme web full-stack permettant de digitaliser le processus de recrutement. Elle met en relation **entreprises**, **candidats** et un **administrateur** au sein d'un espace unifié, sécurisé et intuitif.
-
-Le projet a été développé dans le cadre d'un **Projet de Fin d'Études (PFE)**.
+- [A propos](#a-propos)
+- [Fonctionnalites](#fonctionnalites)
+- [Stack technique](#stack-technique)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Comptes de test](#comptes-de-test)
+- [Endpoints API](#endpoints-api)
 
 ---
 
-## ✨ Fonctionnalités
+## A propos
 
-| Rôle | Fonctionnalités |
+Plateforme web full-stack permettant de digitaliser le processus de recrutement. Elle met en relation **entreprises**, **candidats** et un **administrateur** au sein d'un espace unifie, securise et intuitif.
+
+Le projet a ete developpe dans le cadre d'un **Projet de Fin d'Etudes (PFE)**.
+
+---
+
+## Fonctionnalites
+
+| Role | Fonctionnalites |
 |---|---|
-| 🔴 **Admin** | Gestion complète des utilisateurs (CRUD), tableau de bord statistiques global |
-| 🟡 **Entreprise** | Publication et gestion des offres d'emploi, consultation et traitement des candidatures |
-| 🟢 **Candidat** | Consultation des offres, candidature avec message, upload et gestion des CVs |
+| **Admin** | Gestion complete des utilisateurs (CRUD), tableau de bord statistiques global |
+| **Entreprise** | Publication et gestion des offres d'emploi, consultation et traitement des candidatures |
+| **Candidat** | Consultation des offres, candidature avec message, upload et gestion des CVs |
 
-**Fonctionnalités transversales :**
-- ✅ Authentification sécurisée avec tokens (Laravel Sanctum)
-- ✅ Inscription avec choix de rôle (Candidat / Entreprise)
-- ✅ Protection des routes par rôle
-- ✅ Upload de fichiers CV (PDF, DOC, DOCX — max 10 MB)
-- ✅ Tableau de bord personnalisé par rôle
-- ✅ Recherche et filtres avancés (localisation, type de contrat, statut)
-- ✅ Gestion des statuts de candidatures (En attente → Examinée → Acceptée / Refusée)
+Fonctionnalites transversales :
+
+- Authentification securisee avec tokens (Laravel Sanctum)
+- Inscription avec choix de role (Candidat / Entreprise)
+- Protection des routes par role
+- Upload de fichiers CV (PDF, DOC, DOCX - max 10 MB)
+- Tableau de bord personnalise par role
+- Recherche et filtres avances (localisation, type de contrat, statut)
+- Gestion des statuts de candidatures (En attente, Examinees, Acceptee, Refusee)
 
 ---
 
-## 🛠 Stack technique
+## Stack technique
 
 ### Backend
+
 - **PHP 8.2+** / **Laravel 10.x**
-- **Laravel Sanctum** — authentification par tokens API
-- **MySQL / MariaDB** — base de données relationnelle
+- **Laravel Sanctum** - authentification par tokens API
+- **MySQL / MariaDB** - base de donnees relationnelle
 - Architecture **MVC** avec API REST
 
 ### Frontend
+
 - **React 18** + **Vite 5**
-- **Tailwind CSS 3** — design utilitaire
-- **Axios** — client HTTP
-- **React Router v6** — navigation
-- **Context API** — gestion de l'état d'authentification
+- **Tailwind CSS 3** - design utilitaire
+- **Axios** - client HTTP
+- **React Router v6** - navigation
+- **Context API** - gestion de l'etat d'authentification
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 ```
 Plateforme-de-Recrutement/
@@ -79,46 +82,45 @@ Plateforme-de-Recrutement/
 │   │   ├── Http/Controllers/ # AuthController, UserController, JobOfferController...
 │   │   └── Models/           # User, JobOffer, Application, CvFile
 │   ├── database/
-│   │   ├── migrations/       # Schéma de la base de données
-│   │   └── seeders/          # Données de test
-│   └── routes/api.php        # Définition des routes API
+│   │   ├── migrations/       # Schema de la base de donnees
+│   │   └── seeders/          # Donnees de test
+│   └── routes/api.php        # Definition des routes API
 │
 └── frontend/                 # SPA React
     └── src/
         ├── pages/            # Login, Register, Dashboard, JobOffers...
-        ├── components/       # Composants réutilisables
+        ├── components/       # Composants reutilisables
         └── contexts/         # AuthContext
 ```
 
 ---
 
-## 🚀 Installation
+## Installation
 
-### Prérequis
+### Prerequis
+
 - PHP >= 8.2 + Composer
 - Node.js >= 18 + npm
 - MySQL ou MariaDB
 
-### 1. Cloner le dépôt
+### 1. Cloner le depot
+
 ```bash
 git clone https://github.com/Abdelkhabir6/Plateforme-de-Recrutement.git
 cd Plateforme-de-Recrutement
 ```
 
-### 2. Backend — Laravel
+### 2. Backend - Laravel
 
 ```bash
 cd backend
 composer install
-```
-
-Copier et configurer l'environnement :
-```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-Éditer `.env` avec vos paramètres de base de données :
+Editer `.env` avec vos parametres de base de donnees :
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -128,24 +130,16 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Créer la base de données et lancer les migrations :
 ```bash
-# Créer la base de données
 mysql -u root -p -e "CREATE DATABASE recruitment_platform;"
-
-# Migrations + données de test
 php artisan migrate --seed
-
-# Lien de stockage
 php artisan storage:link
-
-# Démarrer le serveur
 php artisan serve
 ```
 
 > L'API est accessible sur **http://localhost:8000**
 
-### 3. Frontend — React
+### 3. Frontend - React
 
 ```bash
 cd ../frontend
@@ -153,49 +147,51 @@ npm install
 npm run dev
 ```
 
-> L'interface est accessible sur **http://localhost:5173** (ou le port indiqué par Vite)
+> L'interface est accessible sur **http://localhost:5173**
 
 ---
 
-## 🔑 Comptes de test
+## Comptes de test
 
-Après exécution de `php artisan migrate --seed` :
+Apres execution de `php artisan migrate --seed` :
 
-| Rôle | Email | Mot de passe |
+| Role | Email | Mot de passe |
 |---|---|---|
-| 🔴 Administrateur | `admin@recruitment.com` | `password` |
-| 🟡 Entreprise | `entreprise1@recruitment.com` | `password` |
-| 🟡 Entreprise | `entreprise2@recruitment.com` | `password` |
-| 🟢 Candidat | `candidat1@recruitment.com` | `password` |
-| 🟢 Candidat | `candidat2@recruitment.com` | `password` |
+| Administrateur | `admin@recruitment.com` | `password` |
+| Entreprise | `entreprise1@recruitment.com` | `password` |
+| Entreprise | `entreprise2@recruitment.com` | `password` |
+| Candidat | `candidat1@recruitment.com` | `password` |
+| Candidat | `candidat2@recruitment.com` | `password` |
 
 ---
 
-## 📡 Endpoints API
+## Endpoints API
 
 ### Publics
-| Méthode | Endpoint | Description |
+
+| Methode | Endpoint | Description |
 |---|---|---|
 | `POST` | `/api/register` | Inscription |
 | `POST` | `/api/login` | Connexion |
 | `GET` | `/api/job-offers` | Liste des offres d'emploi |
-| `GET` | `/api/job-offers/{id}` | Détail d'une offre |
+| `GET` | `/api/job-offers/{id}` | Detail d'une offre |
 
-### Protégés (nécessitent un token Sanctum)
-| Méthode | Endpoint | Description |
+### Proteges (token Sanctum requis)
+
+| Methode | Endpoint | Description |
 |---|---|---|
-| `POST` | `/api/logout` | Déconnexion |
-| `GET` | `/api/me` | Profil utilisateur connecté |
+| `POST` | `/api/logout` | Deconnexion |
+| `GET` | `/api/me` | Profil utilisateur connecte |
 | `GET` | `/api/dashboard` | Statistiques du tableau de bord |
 | `CRUD` | `/api/users` | Gestion des utilisateurs (Admin) |
 | `CRUD` | `/api/applications` | Gestion des candidatures |
 | `CRUD` | `/api/cv-files` | Gestion des CVs |
-| `GET` | `/api/my-job-offers` | Offres de l'entreprise connectée |
+| `GET` | `/api/my-job-offers` | Offres de l'entreprise connectee |
 
 ---
 
 <div align="center">
 
-Développé avec ❤️ dans le cadre d'un PFE — 2024
+Developpe dans le cadre d'un PFE - 2024
 
 </div>
